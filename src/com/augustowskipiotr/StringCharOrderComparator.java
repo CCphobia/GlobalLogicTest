@@ -2,16 +2,17 @@ package com.augustowskipiotr;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class KeyWordCharComparator implements Comparator<Character> {
+public class StringCharOrderComparator implements Comparator<Character> {
 
     private List<Character> keyWordChars;
 
-    public KeyWordCharComparator(List<Character> keyWordChars) {
-        if(keyWordChars.size() == 0) {
+    public StringCharOrderComparator(String baseString) {
+        if(baseString.length() == 0) {
             throw new IllegalArgumentException();
         }
-        this.keyWordChars = keyWordChars;
+        this.keyWordChars = baseString.chars().mapToObj(e -> (char) e).collect(Collectors.toList());
     }
 
     @Override
